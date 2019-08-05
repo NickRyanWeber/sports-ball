@@ -73,3 +73,24 @@ const subtractScoreTeamTwo = () => {
 document
   .querySelector('.team-2-subtract-1-button')
   .addEventListener('click', subtractScoreTeamTwo)
+
+// Quarter/Inning Counter
+
+const gameTimeIncrement = () => {
+  let gameQuarter = document.querySelector('.quarter > p').textContent
+  let gameInning = document.querySelector('.inning > p').textContent
+
+  if (gameInning == 4) {
+    gameInning = 1
+    gameQuarter = ++gameQuarter
+    document.querySelector('.quarter > p').textContent = gameQuarter
+    document.querySelector('.inning > p').textContent = gameInning
+  } else {
+    gameInning++
+    document.querySelector('.inning > p').textContent = gameInning
+  }
+}
+
+document
+  .querySelector('.new-inning')
+  .addEventListener('click', gameTimeIncrement)
