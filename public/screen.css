@@ -49,3 +49,13 @@ h1 {
   text-align: center;
   font-size: 5rem;
 }
+
+.game-time-data {
+  display: flex;
+  justify-content: center;
+}
+
+.quarter,
+.inning {
+  margin: 2rem;
+}
