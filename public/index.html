@@ -9,6 +9,14 @@
   </head>
   <body>
     <h1>My Score Board</h1>
+
+    <section class="timer">
+      <p>5</p>
+      <button class="count-down-start">Start Count Down</button>
+    </section>
+
+    <button class="local-storage-trigger">Local Storage Addition</button>
+
     <section class="game-time-data">
       <section class="quarter">
         <h2>Quarter</h2>
@@ -19,13 +27,12 @@
         <p>1</p>
       </section>
     </section>
-    <button class="new-inning">New Inning</button>
-    <button class="reset-game">Rest Game</button>
+
     <section class="teams">
       <section class="team one">
         <section>
           <h2 class="team-1-name">Team 1</h2>
-          <p class="team-1-score">10</p>
+          <p class="team-1-score">0</p>
         </section>
         <section>
           <section>
@@ -43,7 +50,7 @@
       <section class="team two">
         <section>
           <h2 class="team-2-name">Team 2</h2>
-          <p class="team-2-score">10</p>
+          <p class="team-2-score">0</p>
         </section>
 
         <section>
@@ -60,7 +67,8 @@
         </section>
       </section>
     </section>
-
+    <button class="new-inning">New Inning</button>
+    <button class="reset-game">Rest Game</button>
     <script src="/main.js" charset="utf-8"></script>
   </body>
 </html>

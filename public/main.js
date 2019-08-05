@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', main)
 
 // Update Team One Name
 const teamOneNameUpdater = () => {
-  let teamOneName = document.querySelector('.team-1-input').value
+  const teamOneName = document.querySelector('.team-1-input').value
   console.log(teamOneName)
   document.querySelector('.team-1-name').textContent = teamOneName
 }
@@ -21,7 +21,7 @@ document
 
 // Update Team Two name
 const teamTwoNameUpdater = () => {
-  let teamTwoName = document.querySelector('.team-2-input').value
+  const teamTwoName = document.querySelector('.team-2-input').value
   console.log(teamTwoName)
   document.querySelector('.team-2-name').textContent = teamTwoName
 }
@@ -82,7 +82,7 @@ const gameTimeIncrement = () => {
 
   if (gameInning == 4) {
     gameInning = 1
-    gameQuarter = ++gameQuarter
+    gameQuarter++
     document.querySelector('.quarter > p').textContent = gameQuarter
     document.querySelector('.inning > p').textContent = gameInning
   } else {
@@ -104,3 +104,50 @@ const gameReset = () => {
 }
 
 document.querySelector('.reset-game').addEventListener('click', gameReset)
+
+// Button to start an inning
+//  - counts down the inning timer to 0 then increments the inning
+//
+// Button to pause an inning
+//  - When paused turns into a "resume" button
+//
+// Button to immediately start a new inning
+//  - Ignores the timer and starts a new inning
+//  - Re-sets timer to start time
+//
+// When a new inning is reached, re-set timer
+
+let interval
+
+// Countdown Timer
+const countDown = () => {
+  let startTime = document.querySelector('.timer > p').textContent
+  interval = setInterval(() => {
+    startTime--
+    document.querySelector('.timer > p').textContent = startTime
+    if (startTime === 0) {
+      clearInterval(interval)
+    }
+  }, 1000)
+}
+
+document.querySelector('.count-down-start').addEventListener('click', countDown)
+
+// Local Storage
+
+const localStorageTest2 = () => {
+  const gameState = {
+    quarter: document.querySelector('.quarter > p').textContent,
+    inning: document.querySelector('.inning > p').textContent,
+    team1Score: document.querySelector('.team-1-score').textContent,
+    team2Score: document.querySelector('.team-2-score').textContent,
+    team1Name: document.querySelector('.team-1-name').textContent,
+    team2Name: document.querySelector('.team-2-name').textContent
+  }
+  console.log({ gameState })
+  window.localStorage.setItem('session', JSON.stringify(gameState))
+}
+
+document
+  .querySelector('.local-storage-trigger')
+  .addEventListener('click', localStorageTest2)
