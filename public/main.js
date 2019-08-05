@@ -94,3 +94,13 @@ const gameTimeIncrement = () => {
 document
   .querySelector('.new-inning')
   .addEventListener('click', gameTimeIncrement)
+
+// Reset Game
+const gameReset = () => {
+  document.querySelector('.quarter > p').textContent = 1
+  document.querySelector('.inning > p').textContent = 1
+  document.querySelector('.team-1-score').textContent = 0
+  document.querySelector('.team-2-score').textContent = 0
+}
+
+document.querySelector('.reset-game').addEventListener('click', gameReset)
