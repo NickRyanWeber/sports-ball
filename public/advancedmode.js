@@ -6,6 +6,7 @@ let timerStart = 20
 let quarter = 1
 let inning = 1
 let interval
+let inningsInQuarters = 4
 
 // Global Update Name Function
 const updateName = team => {
@@ -49,68 +50,68 @@ document
     updateScore('2', -1)
   })
 
-// Below here hasn't been refactored yet. Starting with the code above
-
-// Quarter/Inning Counter
-
-const gameTimeIncrement = () => {
-  let gameQuarter = document.querySelector('.quarter > p').textContent
-  let gameInning = document.querySelector('.inning > p').textContent
-  // eslint-disable-next-line eqeqeq
-  if (gameInning == 4) {
-    gameInning = 1
-    gameQuarter++
-    document.querySelector('.quarter > p').textContent = gameQuarter
-    document.querySelector('.inning > p').textContent = gameInning
+const newInning = () => {
+  clearInterval(interval)
+  document.querySelector('.timer-counter').textContent = timerStart
+  if (inning == inningsInQuarters) {
+    inning = 1
+    quarter++
+    document.querySelector('.quarter-counter').textContent = quarter
+    document.querySelector('.inning-counter').textContent = inning
   } else {
-    gameInning++
-    document.querySelector('.inning > p').textContent = gameInning
+    inning++
+    document.querySelector('.inning-counter').textContent = inning
   }
 }
 
-document
-  .querySelector('.new-inning')
-  .addEventListener('click', gameTimeIncrement)
+document.querySelector('.new-inning').addEventListener('click', newInning)
 
 // Reset Game
 const gameReset = () => {
-  document.querySelector('.quarter > p').textContent = 1
-  document.querySelector('.inning > p').textContent = 1
-  document.querySelector('.team-1-score').textContent = 0
-  document.querySelector('.team-2-score').textContent = 0
+  quarter = 1
+  inning = 1
+  team1Score = 0
+  team2Score = 0
+  document.querySelector('.quarter-counter').textContent = quarter
+  document.querySelector('.inning-counter').textContent = inning
+  document.querySelector('.team-1-score').textContent = team1Score
+  document.querySelector('.team-2-score').textContent = team2Score
+  clearInterval(interval)
+  document.querySelector('.timer-counter').textContent = timerStart
 }
 
 document.querySelector('.reset-game').addEventListener('click', gameReset)
 
 // Countdown Timer
 const countDown = () => {
-  let startTime = document.querySelector('.timer > p').textContent
+  let startTime = document.querySelector('.timer-counter').textContent
   interval = setInterval(() => {
     startTime--
-    document.querySelector('.timer > p').textContent = startTime
+    document.querySelector('.timer-counter').textContent = startTime
     if (startTime === 0) {
       clearInterval(interval)
+      newInning()
     }
   }, 1000)
 }
 
-document.querySelector('.count-down-start').addEventListener('click', countDown)
+document
+  .querySelector('.inning-controller')
+  .addEventListener('click', countDown)
 
 // Local Storage
-
-const localStorageTest2 = () => {
+const saveGame = () => {
+  let sessionName = document.querySelector('.save-game-input').value
   const gameState = {
-    quarter: document.querySelector('.quarter > p').textContent,
-    inning: document.querySelector('.inning > p').textContent,
+    quarter: document.querySelector('.quarter-counter').textContent,
+    inning: document.querySelector('.inning-counter').textContent,
     team1Score: document.querySelector('.team-1-score').textContent,
     team2Score: document.querySelector('.team-2-score').textContent,
     team1Name: document.querySelector('.team-1-name').textContent,
     team2Name: document.querySelector('.team-2-name').textContent
   }
   console.log({ gameState })
-  window.localStorage.setItem('session', JSON.stringify(gameState))
+  window.localStorage.setItem(sessionName, JSON.stringify(gameState))
 }
 
-document
-  .querySelector('.local-storage-trigger')
-  .addEventListener('click', localStorageTest2)
+document.querySelector('.save-game-btn').addEventListener('click', saveGame)
