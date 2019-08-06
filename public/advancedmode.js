@@ -73,6 +73,7 @@ const updateScore = (team, points) => {
   document.querySelector(teamSelector).textContent = score
 }
 
+// Dry this up?
 document.querySelector('.team-1.score-1').addEventListener('click', () => {
   updateScore('1', 1)
 })
@@ -169,8 +170,25 @@ const loadGame = () => {
     gameData.quarter,
     gameData.inning,
     gameData.inningsInQuarters,
-    gameData.timerStart
+    gameData.startTimer
   )
 }
 
 document.querySelector('.load-game-btn').addEventListener('click', loadGame)
+
+// Modal
+
+const modalSwitch = () => {
+  const modal = document.querySelector('#modal')
+
+  if (modal.classList.contains('modal-hide')) {
+    modal.classList.remove('modal-hide')
+    modal.classList.add('modal-show')
+  } else {
+    modal.classList.remove('modal-show')
+    modal.classList.add('modal-hide')
+  }
+}
+
+document.querySelector('.modal-open').addEventListener('click', modalSwitch)
+document.querySelector('.modal-close').addEventListener('click', modalSwitch)
