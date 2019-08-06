@@ -34,6 +34,8 @@ const updateName = x => {
   document.querySelector(cssWriter).textContent = team2Name
 }
 
+// Below here hasn't been refactored yet. Starting with the code above
+
 // Team One Score Add
 const addScoreTeamOne = () => {
   let teamOneScore = document.querySelector('.team-1-score').innerHTML
