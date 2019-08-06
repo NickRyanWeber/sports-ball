@@ -5,8 +5,48 @@ let team2Score = 0
 let timerStart = 20
 let quarter = 1
 let inning = 1
-let interval
 let inningsInQuarters = 4
+let interval
+
+const setupGame = (
+  setupTeam1Name,
+  setupTeam2Name,
+  setupTeam1Score,
+  setupTeam2Score,
+  setupQuarter,
+  setupInning,
+  setupInningsInQuarters,
+  setupTimerStart
+) => {
+  team1Name = setupTeam1Name
+  team2Name = setupTeam2Name
+  team1Score = setupTeam1Score
+  team2Score = setupTeam2Score
+  timerStart = setupTimerStart
+  quarter = setupQuarter
+  inning = setupInning
+  inningsInQuarters = setupInningsInQuarters
+  document.querySelector('.quarter-counter').textContent = setupQuarter
+  document.querySelector('.inning-counter').textContent = setupInning
+  document.querySelector('.team-1-score').textContent = setupTeam1Score
+  document.querySelector('.team-2-score').textContent = setupTeam2Score
+  document.querySelector('.team-1-name').textContent = setupTeam1Name
+  document.querySelector('.team-2-name').textContent = setupTeam2Name
+  document.querySelector('.timer-counter').textContent = setupTimerStart
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupGame(
+    team1Name,
+    team2Name,
+    team1Score,
+    team2Score,
+    quarter,
+    inning,
+    inningsInQuarters,
+    timerStart
+  )
+})
 
 // Global Update Name Function
 const updateName = team => {
@@ -108,10 +148,29 @@ const saveGame = () => {
     team1Score: document.querySelector('.team-1-score').textContent,
     team2Score: document.querySelector('.team-2-score').textContent,
     team1Name: document.querySelector('.team-1-name').textContent,
-    team2Name: document.querySelector('.team-2-name').textContent
+    team2Name: document.querySelector('.team-2-name').textContent,
+    inningsPerQuarter: inningsInQuarters,
+    startTimer: timerStart
   }
-  console.log({ gameState })
   window.localStorage.setItem(sessionName, JSON.stringify(gameState))
 }
 
 document.querySelector('.save-game-btn').addEventListener('click', saveGame)
+
+const loadGame = () => {
+  let savedGameName = document.querySelector('.load-game-input').value
+  let savedGameData = window.localStorage.getItem(savedGameName)
+  let gameData = JSON.parse(savedGameData)
+  setupGame(
+    gameData.team1Name,
+    gameData.team2Name,
+    gameData.team1Score,
+    gameData.team2Score,
+    gameData.quarter,
+    gameData.inning,
+    gameData.inningsInQuarters,
+    gameData.timerStart
+  )
+}
+
+document.querySelector('.load-game-btn').addEventListener('click', loadGame)

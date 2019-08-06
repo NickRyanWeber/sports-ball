@@ -80,3 +80,8 @@ h1 {
   align-items: center;
   justify-content: center;
 }
+
+.save-game-input,
+.load-game-input {
+  margin: 1rem;
+}
