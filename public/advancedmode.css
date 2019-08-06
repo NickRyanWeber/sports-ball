@@ -6,56 +6,77 @@ html {
   height: 100%;
 }
 
-body {
+* {
   margin: 0;
-  min-height: 100%;
+  padding: 0;
+}
+
+/* Alignment */
+body {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: whitesmoke;
-  color: rgb(14, 14, 14);
+  flex-direction: column;
 }
 
-body,
-html {
-  height: 100%;
-}
-
-h1 {
-  text-align: center;
-}
-
-.teams {
+main {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  /* align-items: center; */
   width: 100%;
-  height: 75%;
 }
 
 .team {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  justify-content: space-around;
-  padding: 0.5rem;
-}
-
-.team h2 {
-  font-size: 2rem;
-}
-
-.team-1-score,
-.team-2-score {
-  text-align: center;
-  font-size: 5rem;
-}
-
-.game-time-data {
-  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.quarter,
-.inning {
-  margin: 2rem;
+.game-data-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-data {
+  display: flex;
+  margin: 0.5rem;
+}
+
+.game-data-headers {
+  align-self: flex-start;
+}
+
+.counter {
+  align-self: flex-end;
+}
+
+.fa {
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+
+.main-section {
+  margin: 1rem;
+}
+
+h1 {
+  margin: 1rem;
+}
+
+.score {
+  font-size: 3rem;
+  margin: 0.5rem;
+}
+
+.inning-btn {
+  margin: 0.5rem;
+}
+
+.name-updater {
+  margin: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

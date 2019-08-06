@@ -9,49 +9,53 @@
     <script src="https://kit.fontawesome.com/ad6c1e1a27.js"></script>
   </head>
   <body>
-    <h1>
+    <header>
       <h1>Sports Ball</h1>
-    </h1>
+    </header>
     <main>
-      <section class="team-1">
+      <section class="team-1 team main-section">
         <h2 class="team-1-name">Team 1</h2>
-        <p class="team-1-score">0</p>
+        <p class="team-1-score score">0</p>
         <section class="score-counters team-1-score-counter">
           <i class="fa fa-plus-square"></i>
           <i class="fa fa-minus-square"></i>
         </section>
         <h3>Update Score</h3>
-        <input type="text" class="team-1-input" />
-        <button class="update-team-1-name">Update Name</button>
+        <section class="name-updater">
+          <input type="text" class="team-1-input" />
+          <button class="update-team-1-name update-name">Update Name</button>
+        </section>
       </section>
 
-      <section class="game-data-section">
+      <section class="game-data-section main-section">
         <section class="timer-section game-data">
-          <h4>Timer</h4>
+          <h4 class="game-data-headers">Timer</h4>
           <p class="timer-counter counter">20</p>
         </section>
         <section class="quarter-section game-data">
-          <h4>Quarter</h4>
+          <h4 class="game-data-headers">Quarter</h4>
           <p class="quarter-counter counter">1</p>
         </section>
         <section class="inning-section game-data">
-          <h4>Inning</h4>
+          <h4 class="game-data-headers">Inning</h4>
           <p class="inning-counter counter">1</p>
         </section>
-        <button class="inning-controller">Start Inning</button>
-        <button class="new-inning">New Inning</button>
+        <button class="inning-controller inning-btn">Start Inning</button>
+        <button class="new-inning inning-btn">New Inning</button>
       </section>
 
-      <section class="team-2">
+      <section class="team-2 team main-section">
         <h2 class="team-2-name">Team 2</h2>
-        <p class="team-2-score">0</p>
+        <p class="team-2-score score">0</p>
         <section class="score-counters team-2-score-counter">
           <i class="fa fa-plus-square"></i>
           <i class="fa fa-minus-square"></i>
         </section>
         <h3>Update Score</h3>
-        <input type="text" class="team-2-input" />
-        <button class="update-team-2-name">Update Name</button>
+        <section class="name-updater">
+          <input type="text" class="team-2-input" />
+          <button class="update-team-2-name update-name">Update Name</button>
+        </section>
       </section>
     </main>
 
@@ -59,6 +63,7 @@
       <a
         href="https://www.buzzfeed.com/danieldalton/hashtag-sportsball"
         class="about-link"
+        target="_blank"
         >About</a
       >
     </footer>

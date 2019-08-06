@@ -1,34 +1,38 @@
-const main = () => {
-  if (document.querySelector('h1.hello-world')) {
-    document.querySelector('h1.hello-world').textContent = 'Hello, World!'
-  }
-}
-
-document.addEventListener('DOMContentLoaded', main)
-
-// My Stuff
+let team1Name = 'Team 1'
+let team2Name = 'Team 2'
+let team1Score = 0
+let team2Score = 0
+let timerStart = 20
+let quarter = 1
+let inning = 1
 
 // Update Team One Name
 const teamOneNameUpdater = () => {
-  const teamOneName = document.querySelector('.team-1-input').value
-  console.log(teamOneName)
-  document.querySelector('.team-1-name').textContent = teamOneName
+  team1Name = document.querySelector('.team-1-input').value
+  document.querySelector('.team-1-name').textContent = team1Name
 }
 
 document
   .querySelector('.update-team-1-name')
-  .addEventListener('click', teamOneNameUpdater)
+  .addEventListener('click', updateName('1'))
 
 // Update Team Two name
 const teamTwoNameUpdater = () => {
-  const teamTwoName = document.querySelector('.team-2-input').value
-  console.log(teamTwoName)
-  document.querySelector('.team-2-name').textContent = teamTwoName
+  team2Name = document.querySelector('.team-2-input').value
+  document.querySelector('.team-2-name').textContent = team2Name
 }
 
 document
   .querySelector('.update-team-2-name')
-  .addEventListener('click', teamTwoNameUpdater)
+  .addEventListener('click', updateName(2))
+
+// Test name function
+const updateName = x => {
+  let cssSelector = '.team-' + x + '-input'
+  let cssWriter = '.team-' + x + '-name'
+  team2Name = document.querySelector(cssSelector).value
+  document.querySelector(cssWriter).textContent = team2Name
+}
 
 // Team One Score Add
 const addScoreTeamOne = () => {
