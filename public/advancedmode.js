@@ -24,7 +24,9 @@ const teamTwoNameUpdater = () => {
 
 document
   .querySelector('.update-team-2-name')
-  .addEventListener('click', updateName(2))
+  .addEventListener('click', updateName => {
+    updateName(2)
+  })
 
 // Test name function
 const updateName = x => {
