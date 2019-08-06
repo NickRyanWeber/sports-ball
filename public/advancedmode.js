@@ -5,82 +5,51 @@ let team2Score = 0
 let timerStart = 20
 let quarter = 1
 let inning = 1
+let interval
 
-// Update Team One Name
-const teamOneNameUpdater = () => {
-  team1Name = document.querySelector('.team-1-input').value
-  document.querySelector('.team-1-name').textContent = team1Name
-}
-
-document
-  .querySelector('.update-team-1-name')
-  .addEventListener('click', updateName('1'))
-
-// Update Team Two name
-const teamTwoNameUpdater = () => {
-  team2Name = document.querySelector('.team-2-input').value
-  document.querySelector('.team-2-name').textContent = team2Name
-}
-
-document
-  .querySelector('.update-team-2-name')
-  .addEventListener('click', updateName => {
-    updateName('2')
-  })
-
-// Test name function
-const updateName = x => {
-  let cssSelector = '.team-' + x + '-input'
-  let cssWriter = '.team-' + x + '-name'
+// Global Update Name Function
+const updateName = team => {
+  let cssSelector = '.team-' + team + '-input'
+  let cssWriter = '.team-' + team + '-name'
   team2Name = document.querySelector(cssSelector).value
   document.querySelector(cssWriter).textContent = team2Name
 }
 
+document.querySelector('.update-team-1-name').addEventListener('click', () => {
+  updateName('1')
+})
+
+document.querySelector('.update-team-2-name').addEventListener('click', () => {
+  updateName('2')
+})
+
+// Global Score Update Function
+const updateScore = (team, points) => {
+  let point = parseFloat(points)
+  let teamSelector = '.team-' + team + '-score'
+  let score = parseFloat(document.querySelector(teamSelector).innerHTML)
+  score = score + point
+  document.querySelector(teamSelector).textContent = score
+}
+
+document.querySelector('.team-1.score-1').addEventListener('click', () => {
+  updateScore('1', 1)
+})
+document
+  .querySelector('.team-1.score-minus-1')
+  .addEventListener('click', () => {
+    updateScore('1', -1)
+  })
+document.querySelector('.team-2.score-1').addEventListener('click', () => {
+  updateScore('2', 1)
+})
+document
+  .querySelector('.team-2.score-minus-1')
+  .addEventListener('click', () => {
+    updateScore('2', -1)
+  })
+
 // Below here hasn't been refactored yet. Starting with the code above
-
-// Team One Score Add
-const addScoreTeamOne = () => {
-  let teamOneScore = document.querySelector('.team-1-score').innerHTML
-  teamOneScore++
-  document.querySelector('.team-1-score').textContent = teamOneScore
-}
-
-document
-  .querySelector('.team-1-add-1-button')
-  .addEventListener('click', addScoreTeamOne)
-
-// Team One Score Subtract
-const subtractScoreTeamOne = () => {
-  let teamOneScore = document.querySelector('.team-1-score').innerHTML
-  teamOneScore--
-  document.querySelector('.team-1-score').textContent = teamOneScore
-}
-
-document
-  .querySelector('.team-1-subtract-1-button')
-  .addEventListener('click', subtractScoreTeamOne)
-
-// Team Two Score Add
-const addScoreTeamTwo = () => {
-  let teamTwoScore = document.querySelector('.team-2-score').innerHTML
-  teamTwoScore++
-  document.querySelector('.team-2-score').textContent = teamTwoScore
-}
-
-document
-  .querySelector('.team-2-add-1-button')
-  .addEventListener('click', addScoreTeamTwo)
-
-// Team Two Score Subtract
-const subtractScoreTeamTwo = () => {
-  let teamTwoScore = document.querySelector('.team-2-score').innerHTML
-  teamTwoScore--
-  document.querySelector('.team-2-score').textContent = teamTwoScore
-}
-
-document
-  .querySelector('.team-2-subtract-1-button')
-  .addEventListener('click', subtractScoreTeamTwo)
 
 // Quarter/Inning Counter
 
@@ -112,20 +81,6 @@ const gameReset = () => {
 }
 
 document.querySelector('.reset-game').addEventListener('click', gameReset)
-
-// Button to start an inning
-//  - counts down the inning timer to 0 then increments the inning
-//
-// Button to pause an inning
-//  - When paused turns into a "resume" button
-//
-// Button to immediately start a new inning
-//  - Ignores the timer and starts a new inning
-//  - Re-sets timer to start time
-//
-// When a new inning is reached, re-set timer
-
-let interval
 
 // Countdown Timer
 const countDown = () => {
